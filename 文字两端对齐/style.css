@@ -1,0 +1,11 @@
+span{
+    border:1px solid red;
+    text-align:justify;
+    display:inline-block;
+    width:70px;
+  }
+span::after{
+    content:'';
+    display:inline-block;
+    width:100%;
+  }
