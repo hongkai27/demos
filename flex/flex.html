@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>FLEX详解</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./flex.css" />
+    
+</head>
+<body>
+    <div class="box">
+        <header>不是display:flex弹性盒子的话，不能使用justify和align两个属性进行布局，
+            只能使用text-align:center进行居中，且不是同时水平与垂直居中
+        </header>
+        <main>弹性盒子可以使用justify-content;
+            align-items；两种属性代码
+            flex-wrap:wrap;换行
+            flex-grow:1/2;剩余空间按比例分配1全要、2要两倍
+        </main>
+        <footer>flex-direction:row;同一行从左往右排列
+            flex-direction:row-reverse;从右往左排列
+            flex-direction:column;从上往下排列 
+            flex-direction:column-reverse;从下往上排列
+        </footer>
+    </div>
+</body>
+</html>

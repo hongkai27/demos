@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.box{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+header{
+    height: 100px;
+    background: rgb(206, 252, 147);
+    text-align: center;
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+footer{
+    display: flex;
+    height: 100px;
+    background: rgb(140, 236, 215);
+    align-items: flex-end;
+    justify-content: center;
+    flex-grow: 1;
+}
