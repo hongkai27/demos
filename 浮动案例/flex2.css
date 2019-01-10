@@ -1,0 +1,23 @@
+*{margin:0;padding:0;}
+ul,ol{list-style:none;}
+
+.wrapper{
+  width: 750px;
+  margin: 20px auto;
+}
+ul > li {
+  background: #ddd;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/*上面的代码不准动，请在下面写代码*/
+ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+li{
+    width:178px;
+    height: 90px;
+}

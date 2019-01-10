@@ -1,0 +1,34 @@
+.clearfix::after{
+    content:'';
+    display: block;
+    clear: both;
+}
+*{
+    padding: 0;
+    margin: 0;
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+    float: left;
+    margin: 0 8px;
+    width: 60px;
+}
+.navBar{
+    line-height: 30px;
+    margin: 3px 0;
+    width: 600px;
+}
+.logo{
+    float: left;
+    line-height: 30px;
+    margin: 3px 2px;
+    width: 80px;
+}
+.nav{
+    float: right;
+    line-height: 30px;
+    margin: 3px 0;
+}
