@@ -9,7 +9,7 @@
     fill: currentColor;
     overflow: hidden;
  }
-ui,ol{
+ul,ol{
     list-style: none;
 }
 body{
@@ -23,6 +23,7 @@ body{
     margin: 0 auto;
 }
 .wraper{
+    position: relative;
     height: 40px;
     max-width: 600px;
     display: flex;
@@ -33,7 +34,7 @@ body{
     display: inline-block;
     float: left;
     line-height: 36px; 
-    width: 60%;
+    width: 360px;
 }
 .floatDiv{
     position: absolute;/*相对于wrapinput定位*/
@@ -43,19 +44,35 @@ body{
     padding: 2px 0;
     margin-right: 4px;
 }
+.kong{
+    width: 0;
+    height: 20px;
+    border-right: 1px solid #888686;
+    margin-right: 4px;
+}
 button{
     float: left;
-    line-height: 36px;
-    width: 20%;
+    width: 120px;
+    border: none;
+    background: #bdcadb;
+    font-size: 16px;
+    color: rgb(65, 63, 63);
+    transition: all 0.3s;
+}
+button:focus{
+    outline: none;
+}
+button:hover{
+    box-shadow: 6px 6px 19px -9px rgb(46, 46, 46);
 }
 input{
     border: 1px solid #b8b8b8;
     line-height: 36px;
-    padding: 1px 0;
+    padding: 1px 6px 0;
     width: 100%;
-    font-size: 20px;
+    font-size: 16px;
 }
-input:focus{
+input:focus{/*鼠标点进去后边框不变色*/
     outline: none;  /*鼠标点进去后边框不变色*/
     border-color: #4b94fc;
 }
@@ -66,4 +83,18 @@ input:focus{
 }
 .icon{
     margin: 0 2px;
+    fill: #535252;
+}
+.icon:hover{
+    fill:#4b94fc;
+    cursor: pointer;
+}
+.suggestion{
+    position: absolute;
+    top: 100%;
+    left: 64px;
+    display: none;
+}
+.suggestion.active{
+    display: block;
 }

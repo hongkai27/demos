@@ -7,29 +7,35 @@
     <title>COS baidu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="./bai.css" />
-    <script src="//at.alicdn.com/t/font_1011848_rzaob9uutac.js"></script>
+    
 </head>
 
 <body>
     <div class="banner">
-        <img class="image" src="./wallhaven-191840.jpg" alt="背景图">
+        <img class="image" src="./wallhaven-13059.png" alt="背景图">
         <div class="wraper">
             <span class="wraperInput">
-                <input type="text">
+                <input type="text" id="text">
                 <span class="floatDiv">
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-mic"></use>
                     </svg>
-                    <span></span>
+                    <span class="kong" ></span>
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-camera"></use>
                     </svg>
                 </span>
             </span>
             <button class="button">咻一下</button>
+            <ul class="suggestion"  id="suggestion">
+                <li>选项一</li>
+                <li>选项二</li>
+                <li>选项三</li>
+            </ul>
         </div>
     </div>
-
+    <script src="./bai.js"></script>
+    <script src="//at.alicdn.com/t/font_1011848_rzaob9uutac.js"></script>
 </body>
 
 </html>
