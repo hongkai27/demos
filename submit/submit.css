@@ -1,0 +1,77 @@
+.imagePick{
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;          /*flex浮动后input和img会都在中间抢位置，给input一个绝对定位*/
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+}
+.imagePick img{
+    max-width: 100%;
+    max-height: 100%;
+    vertical-align: top;/*去除img下面的空隙*/
+}
+input{
+    position: absolute;
+    height: 100%;/*让整个图片都可以被点击到*/
+    max-width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;/*透明度*/
+    z-index: 1;/*mask会把input盖住，必须先把input提升一层,否则点击不了*/
+}
+.mask{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+.imagePick:hover .mask{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.3);
+}
+
+
+
+
+
+
+
+
+
+
+
+/*.................*/
+.mybutton{
+    background: none;
+    border: none;
+    height: 36px;
+    padding: 0 16px;
+    transition: all .3s;
+    position: relative;
+}
+.mybutton:hover{
+    background: #dad5d5;
+}
+.mybutton:focus{
+    outline: none;
+    background:#e5e5e5;
+}
+.lang{
+    border:1px solid red;
+    background: red;
+    width:10px;
+    height: 10px;
+    position: absolute;
+    top: 50%;
+    left:50%;
+    margin-left: -5px;/*和上面自己的宽高有关*/
+    margin-top: -5px;
+}
