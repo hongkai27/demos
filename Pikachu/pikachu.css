@@ -1,0 +1,130 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fee433;
+}
+.wrapper{
+    width: 916px;
+    height: 300px;
+    position: relative;
+}
+.nose{
+    width: 0;
+    height: 0;
+    border: 12px solid;
+    border-radius: 11px;
+    border-color: #131212 transparent transparent;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    margin-left: -11px;/*也可以用transform:translateX(-50%)*/
+}
+.eye{
+    height: 50px;
+    width: 50px;
+    border-radius: 26px;
+    background: #2e2e2e;
+    position: absolute;
+    border: 2px solid black;
+}
+.eye::before{
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius:50%;
+    border: 1px solid black;
+    position: absolute;
+    top: 1px;
+    left: 5px;
+}
+.left.eye{
+    left: 310px;
+    top: 60px;
+}
+.right.eye{
+    right: 310px;
+    top: 60px;
+}
+.face{
+    height: 76px;
+    width: 76px;
+    border-radius: 50%;
+    background: #da0a18;
+    position: absolute;
+    border: 1px solid black;
+}
+.left.face{
+    top: 144px;
+    left: 246px;
+}
+.right.face{
+    top: 144px;
+    right: 246px;
+}
+.upperLip{
+    height:20px;
+    width: 70px;
+    border: 2px solid black;
+    position: absolute;
+    z-index: 1;
+    background: #fee433;
+}
+.left.upperLip{
+    border-bottom-left-radius: 36px 18px;
+    border-top: transparent;
+    border-right: transparent;
+    transform: rotate(-20deg);  /*旋转角度*/
+    top: 120px;
+    left: 388px;
+}
+.right.upperLip{
+    border-bottom-right-radius: 36px 18px;
+    border-top: transparent;
+    border-left: transparent;
+    transform: rotate(19deg);
+    top: 120px;
+    right: 388px;
+}
+.lipWrapper{
+    position: absolute;
+    margin-left: 356px;
+    bottom: 52px;
+    width: 200px;
+    height: 120px;
+    overflow: hidden;
+}
+.lowLip{
+    height: 300px;
+    width: 112px;
+    border: 2px solid black;
+    border-radius: 102px/224px;
+    margin-left: 46px;
+    bottom: 0;
+    position: absolute;
+    background: #990513;
+    overflow: hidden;
+}
+.lowLip::after{
+    content: '';
+    width: 106px;
+    height: 98px;
+    background: #fc4a62;
+    position: absolute;
+    bottom: 0;
+    border-top-left-radius: 48px;
+    border-top-right-radius: 48px;
+    left: 2px;
+}
