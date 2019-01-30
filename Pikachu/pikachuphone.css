@@ -8,19 +8,26 @@ body{
     padding: 0;
     height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     background: #fee433;
 }
-span{
-    font-size: 16px;
-    font-family: kai;
+.code{
+    width: 100%;
+    height: 300px;
+}
+.preview-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.preview{
+    width: 370px;
+    height: 300px;
+    position: relative;
 }
 .wrapper{
-    width: 370px;
-    height: 600px;
-    position: relative;
-    display: flex;
+    width: 100%;
+    height: 100%;
 }
 .nose{
     border: 12px solid;
@@ -29,7 +36,7 @@ span{
     border-radius: 12px;
     border-color: black transparent transparent;
     position: absolute;
-    top: 280px;
+    top: 92px;
     left: 185px;
     margin-left: -6px;
 }
@@ -52,11 +59,11 @@ span{
     border: 1px solid black;
 }
 .left.eye{
-    top: 244px;
+    top: 48px;
     left: 70px;
 }
 .right.eye{
-    top: 244px;
+    top: 48px;
     right: 70px;
 }
 .face{
@@ -68,11 +75,11 @@ span{
     position: absolute;
 }
 .left.face{
-    top: 336px;
+    top: 132px;
     left: 22px;
 }
 .right.face{
-    top: 336px;
+    top: 132px;
     right: 22px;
 }
 .upperLip{
@@ -85,14 +92,14 @@ span{
     border-top: transparent;
 }
 .left.upperLip{
-    top: 304px;
+    top: 130px;
     left: 112px;
     transform: rotate(-20deg);
     border-bottom-left-radius: 46px 24px;
     border-right: transparent;
 }
 .right.upperLip{
-    top: 304px;
+    top: 130px;
     right: 100px;
     transform: rotate(20deg);
     border-bottom-right-radius: 46px 24px;
@@ -102,7 +109,7 @@ span{
     width: 154px;
     height: 100px;
     position: absolute;
-    top: 314px;
+    top: 140px;
     left: 112px;
     overflow: hidden;
 }
@@ -128,9 +135,9 @@ span{
 }
 .pik-body{
     width:100px;
-    height:130px;
+    height:92px;
     position:absolute;
-    bottom: 160px;
+    bottom: 86px;
     transform: rotateZ(-1deg);
     display: flex;
 }
