@@ -1,5 +1,7 @@
 !function () {
-    let text = `.nose{
+    let text = 
+    `/*首先黄色的皮肤已经准备好了，我们需要一只鼻子*/
+    .nose{
         border: 12px solid;
         width: 0px;
         height: 0px;
@@ -10,6 +12,7 @@
         left: 185px;
         margin-left: -6px;
     }
+    /*然后是眼睛*/
     .eye{
         width: 50px;
         height: 50px;
@@ -17,6 +20,7 @@
         border-radius: 50%;
         position: absolute;
     }
+    /*顺便把眼珠也画好吧*/
     .eye::after{
         content: '';
         position: absolute;
@@ -36,6 +40,7 @@
         top: 48px;
         right: 70px;
     }
+    /*接下来是可爱的腮红*/
     .face{
         width: 66px;
         height: 66px;
@@ -52,6 +57,7 @@
         top: 132px;
         right: 22px;
     }
+    /*要画它的上嘴唇了*/
     .upperLip{
         width: 78px;
         height: 24px;
@@ -75,6 +81,7 @@
         border-bottom-right-radius: 46px 24px;
         border-left: transparent;
     }
+    /*嘴巴内部比较难画，没办法，试着做一下吧*/
     .lowLip{
         width: 140px;
         height: 400px;
@@ -85,6 +92,7 @@
         left: 8px;
         overflow: hidden;
     }
+    /*别忘了还有舌头*/
     .lowLip::after{
         content: '';
         width: 102px;
@@ -110,7 +118,6 @@
             preCode.scrollTop = preCode.scrollHeight
             if (n > code.length) {
                 window.clearInterval(time)
-
             }
         }, )
     }

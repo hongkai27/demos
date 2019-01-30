@@ -16,7 +16,9 @@ body{
     height: 280px;
     overflow: hidden;
 }
-
+.code-wrapper{
+    padding: 4px;
+}
 .preview-wrapper{
     display: flex;
     justify-content: center;
