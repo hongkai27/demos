@@ -12,6 +12,10 @@ body{
     align-items: center;
     background: #fee433;
 }
+span{
+    font-size: 16px;
+    font-family: kai;
+}
 .wrapper{
     width: 370px;
     height: 600px;
@@ -121,4 +125,15 @@ body{
     bottom: 0;
     position: absolute;
     border-radius: 144px/118px;
+}
+.pik-body{
+    width:100px;
+    height:130px;
+    position:absolute;
+    bottom: 160px;
+    transform: rotateZ(-1deg);
+    display: flex;
+}
+.shock-right{
+    margin-left: 78px;
 }
