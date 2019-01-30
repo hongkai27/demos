@@ -53,6 +53,22 @@ body{
 .shock-right{
     margin-left: 78px;
 }
+.actions{
+    position: absolute;
+    right:0;
+    top: 10px;
+}
+.actions button{
+    margin: 6px 2px;
+    background: rgb(243, 237, 237);
+    border: none;
+}
+.actions button:focus{
+    outline: none;
+}
+.actions button.active{
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.8);
+}
 /*
 .nose{
     border: 12px solid;

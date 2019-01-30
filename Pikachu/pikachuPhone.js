@@ -1,6 +1,6 @@
 !function () {
-    let text = 
-    `/*首先黄色的皮肤已经准备好了，我们需要一只鼻子*/
+    let text =
+        `/*首先黄色的皮肤已经准备好了，我们需要一只鼻子*/
     .nose{
         border: 12px solid;
         width: 0px;
@@ -107,20 +107,40 @@
     writeCode(text)
 
     /*................................ */
+    var duration = 50
     function writeCode(code) {
         let preCode = document.querySelector('.code')
         let styleCode = document.querySelector('#styleCode')
         let n = 0
-        let time = setInterval(() => {
+        setTimeout(function run() {
             n += 1
             styleCode.innerHTML = code.substring(0, n)
             preCode.innerHTML = Prism.highlight(code.substring(0, n), Prism.languages.css)
             preCode.scrollTop = preCode.scrollHeight
-            if (n > code.length) {
-                window.clearInterval(time)
+            if (n < code.length) {
+                setTimeout(run, duration)
+            } else {
+
             }
-        }, )
+        }, duration)
     }
 
+    $('.actions').on('click', 'button', function (x) {
+        let $button = $(x.currentTarget)
+        let speed = $button.attr('data-speed')//从data里面拿到需要的数据
+        $button.addClass('active').siblings('.active').removeClass('active')
+        switch (speed) {
+            case 'slow':
+                duration = 100
+                break
+            case 'normal':
+                duration = 50
+                break
+            case 'fast':
+                duration = 10
+                break
+        }
+    })
 }.call()
+
 
