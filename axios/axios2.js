@@ -33,37 +33,49 @@ let view = {
             <button id="clear">清空</button>
         </div>
     `,//自己初始化html
-    render(data){
+    render(data) {
         let html = this.template.replace('__bookname__', data.name)
-        .replace('__number__', data.number)
+            .replace('__number__', data.number)
         $(this.el).html(html)
     }
 }
 
+let controler = {
+    init(options) {
+        let { view, model } = options
+        this.view = view
+        this.model = model
+        this.view.render(this.model.data)
+        this.bindEvents()
+        model.fetch(1)  //路径为/books/1
+            .then((response) => {
+                let data = response.data
+                view.render(data) //重置内容,data也可以用model.data表示,值是一样的
+            })
+    },
+    bindEvents() {
+        $(this.view.el).on('click', '#addone', function () {
+            var oldnumber = $('#number').text()
+            var newnumber = oldnumber - 0 + 1
+            model.update(1, { number: newnumber }).then(() => {
+                $('#number').text(newnumber)//新数据放入book更新之后，再在html中显示
+            })
+        })
+        $(this.view.el).on('click', '#minusone', function () {
+            var oldnumber = $('#number').text()
+            var newnumber = oldnumber - 0 - 1
+            model.update(1, { number: newnumber }).then(() => {//这个数据先放到response.config.data里面，再更新原数据库
+                $('#number').text(newnumber)
+            })
+        })
+        $(this.view.el).on('click', '#clear', function () {
+            $('#number').text(0)
+        })
+    }
+}
 
-model.fetch(1)  //每一次操作都会自动执行get函数，路径为/books/1
-    .then((response) => {
-        let data = response.data
-        view.render(data) //重置内容
-    })
+controler.init({view:view,model:model})
 
-$('#app').on('click', '#addone', function () {
-    var oldnumber = $('#number').text()
-    var newnumber = oldnumber - 0 + 1
-    model.update(1, { number: newnumber }).then(() => {
-        $('#number').text(newnumber)//新数据放入book更新之后，再在html中显示
-    })
-})
-$('#app').on('click', '#minusone', function () {
-    var oldnumber = $('#number').text()
-    var newnumber = oldnumber - 0 - 1
-    model.update(1, { number: newnumber }).then(() => {//这个数据先放到response.config.data里面，再更新原数据库
-        $('#number').text(newnumber)
-    })
-})
-$('#app').on('click', '#clear', function () {
-    $('#number').text(0)
-})
 
 
 /******************************************************************* */
