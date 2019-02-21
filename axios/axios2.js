@@ -20,12 +20,12 @@ let model = {  //moudel只做两件事，fetch获取数据，update更新数据
     }
 }
 
-let view = {
+let view = new Vue({
     el: '#app',//要操作的元素是#app
-    template: `   
-    <div>
+    template: ` 
+        <div>
             书名《__bookname__》
-            数量：<span id="number">__number__</span>
+            数量：<span id="number">{{number}}</span>
         </div>
         <div>
             <button id="addone">加一</button>
@@ -38,7 +38,7 @@ let view = {
             .replace('__number__', data.number)
         $(this.el).html(html)
     }
-}
+})
 
 let controler = {
     init(options) {
@@ -47,7 +47,7 @@ let controler = {
         this.model = model
         this.view.render(this.model.data)
         this.bindEvents()
-        model.fetch(1)  //路径为/books/1
+        this.model.fetch(1)  //路径为/books/1
             .then((response) => {
                 let data = response.data
                 view.render(data) //重置内容,data也可以用model.data表示,值是一样的
@@ -74,7 +74,7 @@ let controler = {
     }
 }
 
-controler.init({view:view,model:model})
+controler.init({ view: view, model: model })
 
 
 
@@ -92,6 +92,7 @@ function makedata() {
             response.data = book  //这个data是响应的数据
         } else if (url === '/books/1' && method === 'put') {
             Object.assign(book, data)  //这个data是请求的数据,先放到response.config.data里面，再赋值给book
+            response.data = book
         }
         return response
     })

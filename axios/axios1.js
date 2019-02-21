@@ -9,6 +9,7 @@ axios.interceptors.response.use(function (response) {
         response.data = book
     } else if (url === '/books/1' && method === 'put') {
         Object.assign(book, data)
+        response.data = book
     }
     return response
 })
