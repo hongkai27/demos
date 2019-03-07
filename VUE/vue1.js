@@ -50,6 +50,8 @@ let view = new Vue({
       
     }
   })*/
+    /***************************** */
+    /*
   {
     let view = new Vue({
       el: '#example-3',
@@ -63,5 +65,22 @@ let view = new Vue({
       }
     }
     controller.init(view)
+  }*/
+  {
+    let view = new Vue({
+      el: '#example-4',
+      data: {
+        picked: '',
+        message:'',
+        checked :''
+      }
+    })
+    let controller = {
+      init(view){
+        this.view = view
+      }
+    }
+    controller.init(view)
   }
+  
   

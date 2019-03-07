@@ -7,16 +7,21 @@
     <title>Document</title>
 </head>
 <body>
-    <div id='example-3'>
-        <input type="checkbox" id="jack" value="11" v-model="checkedNames">
-        <label for="jack">Jack</label>
-        <input type="checkbox" id="john" value="22" v-model="checkedNames">
-        <label for="john">John</label>
-        <input type="checkbox" id="mike" value="33" v-model="checkedNames">
-        <label for="mike">Mike</label>
+    <div id="example-4">
+        <input type="radio" id="one" value="One" v-model="picked">
+        <label for="one">One</label>
         <br>
-        <span>Checked names: {{ checkedNames }}</span>
+        <input type="radio" id="two" value="Two" v-model="picked">
+        <label for="two">Two</label>
+        <br>
+        <span>Picked: {{ picked }}</span>
+        <br>
+        <input v-model="message" placeholder="edit me">
+      <p>Message is: {{ message }}</p>
+      <input type="checkbox" id="checkbox" v-model="checked">
+<label for="checkbox">{{ checked }}</label>
       </div>
+      
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script src="./vue1.js"></script>
