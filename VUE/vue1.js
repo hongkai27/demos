@@ -1,3 +1,4 @@
+/*
 //用VUE做一个浮层案例
 let view = new Vue({
     el:'#xxx',
@@ -15,8 +16,9 @@ let view = new Vue({
         this.open = !this.open  //取反
       }
     }
-  })
+  })*/
   /***************************** */
+  /*
   //用VUE做一个tab切换
   let view = new Vue({
     el: '#app',
@@ -47,4 +49,19 @@ let view = new Vue({
     methods: {
       
     }
-  })
+  })*/
+  {
+    let view = new Vue({
+      el: '#example-3',
+      data: {
+        checkedNames: []
+      }
+    })
+    let controller = {
+      init(view){
+        this.view = view
+      }
+    }
+    controller.init(view)
+  }
+  
