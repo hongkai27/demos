@@ -1,0 +1,317 @@
+.clearfix::after{
+    clear: both;
+    content: "";
+    display: block;
+}
+html,
+body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#app {
+    height: 100%;
+}
+/*顶部会议类型展示展示,边框隐藏*/
+.top > .title-input > .el-input >.el-input__inner{
+    border: 0px solid #DCDFE6;
+    font-size: 1.5rem;
+    width: 200px;
+}
+/**/
+.container{
+    height: 100%;
+}
+
+.header {
+    height: 10%;
+    width: 100%;
+}
+.main{
+    height: 90%;
+    width: 100%;
+    margin-top: 80px;
+    display: flex;
+}
+.main .normal{
+    width: 100%;
+    height: 100%;
+}
+.main .normal .top{
+    /* height: 7%; */
+    border-bottom: 1px solid rgb(170, 165, 165);
+    padding: 11px 0 6px 32%;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+.main .normal .top .p{
+    display: inline-block;
+    margin: 22px;
+    font-size: 20px;
+}
+.main .normal .bottom{
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    /* padding: 20px 20px 2px 442px; */
+}
+.bottom-left{
+    width: 60%;
+    padding-left: 30%;
+}
+/*时间选择器内的input*/
+.el-input{
+    width: 100%;
+}
+/**/
+.wrapperInput{
+    width:38%;
+}
+.bottom-left .form>.el-input__inner{
+    width: 394px;
+}
+.el-textarea__inner{
+    width: 38%;
+}
+.el-form-item {
+    margin-bottom: 12px;
+}
+.side{
+    border-left: 1px solid rgb(8, 111, 158);
+    width: 300px;
+    position: fixed;
+    top: 80px;
+    bottom: 0;
+    right: -300px;
+    background: white;
+    z-index: 10;
+    overflow: scroll;
+    padding-bottom: 10px;
+}
+
+/*搜索相关*/
+.input{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+}
+.input input {
+    width: 90%;
+    margin: 5px auto;
+    height: 30px;
+    padding: 0 5px;
+    border-radius: 5px;
+    border: 1px solid #e3e3e3;
+}
+.search-result {
+    position: absolute;
+    top: 40px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    z-index: 9;
+}
+.search-result-item {
+    height: 60px;
+    border-bottom: 1px solid #e3e3e3;
+    padding: 0 15px;
+}
+.search-result-item-title {
+    margin: 10px 0 0 0;
+    height: 20px;
+    line-height: 20px;
+    font-size: 16px;
+    color: rgb(51,51,51);
+}
+.search-result-item-subtitle {
+    margin: 5px 0;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    color: rgb(150,150,150);
+}
+.search-result-loading {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    width: 32px;
+    height: 32px;
+}
+.search-result-no {
+    position: absolute;
+    left: 0;
+    top: 40%;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: rgb(51, 51, 51);
+}
+
+
+.quanju , .tongxunlu{
+    display: flex;
+    margin: 12px 36px;
+}
+.quanju .p,
+.tongxunlu .p
+{
+    margin: 5px 0 0 20px;
+}
+.button{
+    padding: 10px 108px;
+    margin: 30px 0 0 108px;
+}
+
+.Picture-box {
+    width: 80%;
+}
+.Picture{
+    text-align: center;
+    width: 80px;
+    float: left;
+    margin: 0 10px 10px 0;
+    position: relative;
+}
+.Picture-delete {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+}
+.Picture>img {
+    margin: 0 auto;
+    width:80px;
+    height:80px;
+    border: 1px solid #e3e3e3;
+}
+.Picture-text {
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+}
+/*演讲人-参会人员*/
+.personPicture{
+    /*border: 1px solid rgba(67, 67, 68, 0.133);*/
+    width: 60px;
+    height: 80px;
+}
+.personPicture>img{
+    width: 100%;
+    height: 100%;
+}
+
+
+.avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
+  .el-input__inner{
+      line-height: 30px;
+      height: 30px;
+  }
+  .hidden{
+      display: none;
+  }
+  .success-popup{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+  }
+.pop-up-content{
+  width: 400px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -200px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    text-align: center;
+}
+.close-pop>img{
+    width: 30px;
+    height: 30px;
+}
+.close-pop{
+    position: absolute;
+    right: -15px;
+    top: -15px;
+}
+.createSuccess{
+    width: 100%;
+    text-align: center;
+    font-size: 22px;
+    line-height: 100px;
+    color: #1A619E;
+}
+.pop-info{
+    width: 70%;
+    margin: auto;
+}
+ul{
+    list-style: none;
+}
+.pop-info>li{
+    width: 100%;
+    line-height: 33px;
+    text-align: left;
+}
+.pop-info-content{
+    color: #985A01;
+}
+.sure-pop{
+    width: 80%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    color: #ffffff;
+    margin: 20px auto 0;
+    background: #1A619E;
+    border: 0;
+    border-radius: 5px;
+}
+
+.mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.el-tree-node__label {
+    font-size: 16px;
+}
+.el-tree__empty-block {
+    height: 40px;
+    min-height: 40px;
+}

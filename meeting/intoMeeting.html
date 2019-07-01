@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="js/element-ui-2.4.10/index.css">
+    <link href="./css/newMeeting.css?v=2019063003" rel="stylesheet" type="text/css"/>
+    <link href="./css/intoMeeting.css?v=2019063003" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/main.css?v=2019063003">
+    <title>进入会议</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        !important;
+        }
+    </style>
+</head>
+
+<body>
+<div id="app" v-cloak>
+    <div id="container" class="container">
+        <div class="header">
+            <div class="header-logo"><img src="assets/logo.png"></div>
+            <div class="header-title">南京市公安局视频会议系统</div>
+            <div class="login-out"><img src="assets/loginout.png"></div>
+        </div>
+        <div class="main">
+            <div class="normal">
+                <div class="top clearfix">
+                    <div><img src="./assets/main.jpg" alt=""></div>
+                    <div>
+                        <el-input v-if="xiugai && (detailInfo.validStatus==0||detailInfo.validStatus==1)"
+                                  v-model="detailInfo.meetingSubject"
+                                  style="font-size: 18px;margin-left: 24px;"></el-input>
+                        <el-input v-else v-model="detailInfo.meetingSubject" style="font-size: 18px;margin-left: 24px;"
+                                  readonly class="no-input-border"></el-input>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="bottom-left">
+                        <div class="form">
+                            <el-form label-width="110px">
+                                <el-form-item label="会议类型：">
+                                    <el-select v-if="xiugai && detailInfo.validStatus==0" clearable
+                                               v-model="detailInfo.meetingType"
+                                               placeholder="请选择">
+                                        <el-option v-for="item in options" :key="item.value" :label="item.label"
+                                                   :value="item.value">
+                                        </el-option>
+                                    </el-select>
+                                    <el-input v-else v-model="detailInfo.meetingTypeContent" readonly
+                                              class="wrapperInput no-input-border"></el-input>
+                                    <!---->
+                                </el-form-item>
+
+                                <el-form-item label="房间号：">
+                                    <el-input v-model="detailInfo.roomNo" class="wrapperInput no-input-border"
+                                              readonly></el-input>
+                                </el-form-item>
+                                <el-form-item label="演讲人：" v-if="detailInfo.meetingType == 2">
+                                    <div v-if="xiugai && (detailInfo.validStatus==0||detailInfo.validStatus==1)"
+                                         class="Picture-box">
+                                        <div class="Picture" v-if="speechList.length>0"
+                                             v-for="(item,index) in speechList">
+                                            <img :src=item.photo alt="" onerror="this.src='./assets/defult_avatar.png'">
+
+                                            <div class="Picture-text">{{item.realName}}</div>
+                                            <div><img @click="deletePeopleAction(1,index)" class="Picture-delete"
+                                                      src="./assets/image_delete.png"></div>
+                                        </div>
+                                        <div class="Picture">
+                                            <div @click="canShow(1)" class="personPicture"><img src="assets/xinzr.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                    <div v-else class="Picture-box">
+                                        <div class="Picture" v-for="item in speechList">
+                                            <img :src=item.photo alt="" onerror="this.src='./assets/defult_avatar.png'">
+
+                                            <div class="Picture-text">{{item.realName}}</div>
+                                        </div>
+                                    </div>
+
+                                </el-form-item>
+                                <el-form-item label="管理员：" v-if="detailInfo.meetingType == 2">
+                                    <div v-if="xiugai && (detailInfo.validStatus==0||detailInfo.validStatus==1)"
+                                         class="Picture-box">
+                                        <div class="Picture" v-if="managerJwptList.length>0"
+                                             v-for="(item,index) in managerJwptList">
+                                            <img :src=item.photo alt="" onerror="this.src='./assets/defult_avatar.png'">
+
+                                            <div class="Picture-text">{{item.realName}}</div>
+                                            <div><img @click="deletePeopleAction(2,index)" class="Picture-delete"
+                                                      src="./assets/image_delete.png"></div>
+                                        </div>
+                                        <div class="Picture">
+                                            <div @click="canShow(2)" class="personPicture"><img src="assets/xinzr.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                    <div v-if="!xiugai" class="Picture-box">
+                                        <div class="Picture" v-for="item in managerJwptList">
+                                            <img :src=item.photo alt="" onerror="this.src='./assets/defult_avatar.png'">
+
+                                            <div class="Picture-text">{{item.realName}}</div>
+                                        </div>
+                                    </div>
+                                </el-form-item>
+                                <el-form-item label="会议状态：">
+                                    <div v-if="detailInfo.validStatus=== 2" style="display: flex;padding-top: 3px;">
+                                        <div style="margin-right: 8px;"><img src="./assets/yijieshuhuiyi.jpg"
+                                                                             alt=""></div>
+                                        <p>已结束</p>
+                                    </div>
+                                    <div v-if="detailInfo.validStatus=== 0" style="display: flex;padding-top: 3px;">
+                                        <div style="margin-right: 8px;"><img src="./assets/weikaishihuiyi.jpg"
+                                                                             alt=""></div>
+                                        <p>未开始</p>
+                                    </div>
+                                    <div v-if="detailInfo.validStatus=== 1" style="display: flex;padding-top: 3px;">
+                                        <div style="margin-right: 8px;"><img src="./assets/jinxingzhong.jpg" alt="">
+                                        </div>
+                                        <p>进行中</p>
+                                    </div>
+                                </el-form-item>
+                                <el-form-item label="开始时间：">
+                                    <el-date-picker v-if="xiugai && detailInfo.validStatus==0"
+                                                    v-model="detailInfo.startTime" type="datetime"
+                                                    placeholder="选择日期时间" value-format="yyyy-MM-dd HH:mm:ss">
+                                    </el-date-picker>
+                                    <!---->
+                                    <el-input v-else v-model="detailInfo.startTime" readonly
+                                              class="no-input-border"></el-input>
+                                </el-form-item>
+
+                                <el-form-item label="结束时间：">
+                                    <el-date-picker v-if="xiugai && detailInfo.validStatus==0"
+                                                    v-model="detailInfo.endTime" type="datetime"
+                                                    placeholder="选择日期时间" value-format="yyyy-MM-dd HH:mm:ss">
+                                    </el-date-picker>
+                                    <!---->
+                                    <el-input v-else v-model="detailInfo.endTime" readonly
+                                              class="no-input-border"></el-input>
+                                </el-form-item>
+
+                                <el-form-item label="主要参会人员：">
+                                    <div v-if="xiugai && (detailInfo.validStatus==0||detailInfo.validStatus==1)"
+                                         class="Picture-box">
+                                        <div class="Picture" v-if="participantsList.length>0"
+                                             v-for="(item,index) in participantsList">
+                                            <img :src=item.photo alt="" onerror="this.src='./assets/defult_avatar.png'">
+
+                                            <div class="Picture-text">{{item.realName}}</div>
+                                            <div><img @click="deletePeopleAction(3,index)" class="Picture-delete"
+                                                      src="./assets/image_delete.png"></div>
+                                        </div>
+                                        <div class="Picture">
+                                            <div @click="canShow(3)" class="personPicture"><img src="assets/xinzr.png">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                    <div v-else class="Picture-box">
+                                        <div class="Picture" v-for="item in participantsList">
+                                            <img :src=item.photo alt="" onerror="this.src='./assets/defult_avatar.png'">
+
+                                            <div class="Picture-text">{{item.realName}}</div>
+                                        </div>
+                                    </div>
+
+                                    </el-input>
+                                </el-form-item>
+
+                                <el-form-item label="提醒时间：">
+                                    <el-date-picker v-if="xiugai && detailInfo.validStatus==0"
+                                                    v-model="detailInfo.remindTime" type="datetime"
+                                                    placeholder="选择日期时间" value-format="yyyy-MM-dd HH:mm:ss">
+                                    </el-date-picker>
+                                    <!---->
+                                    <el-input v-else v-model="detailInfo.remindTime" readonly
+                                              class="no-input-border"></el-input>
+
+                                </el-form-item>
+                                <el-form-item label="会议内容：">
+                                    <el-input v-if="xiugai && (detailInfo.validStatus==0||detailInfo.validStatus==1)"
+                                              v-model="detailInfo.meetingContent" clearable
+                                              class="textarea" type="textarea">
+                                    </el-input>
+                                    <!---->
+                                    <el-input v-else v-model="detailInfo.meetingContent" readonly
+                                              class="textarea no-input-border" type="textarea">
+                                    </el-input>
+                                </el-form-item>
+
+                                <el-form-item v-if="isManager || isCreater" label="房间密码：">
+                                    <el-input v-model="detailInfo.roomPassword" class="wrapperInput no-input-border"
+                                              readonly></el-input>
+                                </el-form-item>
+                            </el-form>
+                        </div>
+
+                        <div v-if="detailInfo && detailInfo.roomNo">
+                            <!--不为创建者，显示此按钮 未完成-->
+                            <el-button type="primary" class="button" v-if="detailInfo.validStatus == 4"
+                                       @click="intoMeeting()">进入会议
+                            </el-button>
+                            <!--是创建者，显示此按钮 未完成-->
+                            <div v-if=" !xiugai && detailInfo.validStatus != 2">
+                                <el-button type="primary" class="button" @click="intoMeeting()">进入会议</el-button>
+                                <el-button v-if="isManager || isCreater" type="primary" class="buttons" @click="edit()">修改</el-button>
+                            </div>
+                            <!--修改页面，显示此按钮 未完成-->
+                            <div v-if="xiugai">
+                                <el-button type="primary" class="button" @click="editCancel()">取消
+                                </el-button>
+                                <el-button type="primary" class="button" @click="editOver()">确定
+                                </el-button>
+                            </div>
+                            <!--会议进行中，显示此按钮-->
+                            <!--<el-button type="primary" class="button" v-show="detailInfo.validStatus == 1">结束会议-->
+                            <!--</el-button>-->
+                            <!--会议结束，显示此按钮 未完成-->
+                            <el-button type="primary" class="button" v-show="detailInfo.validStatus == 2" @click="backToPre()">返回
+                            </el-button>
+                        </div>
+                    </div>
+                    <!--弹窗-->
+                    <el-dialog center title="请输入会议室密码" :visible.sync="dialogVisible" width="300px">
+                        <el-input style="border: none;" v-model="room_pwd"></el-input>
+                            <span slot="footer" class="dialog-footer">
+                                <el-button @click="cancle()">取 消</el-button>
+                                <el-button style="background: #1A619E;color: white;" @click="confirm()">确 定</el-button>
+                            </span>
+                    </el-dialog>
+                </div>
+            </div>
+            <div class="side">
+                <div class="input">
+                    <input placeholder="搜索人员" v-model="search_keyword" @keyup.enter="startSearch()" @input="searchValueChange()">
+                </div>
+
+                <div v-if="(search_list && search_list.length>=0) || is_searching" class="search-result">
+                    <div v-if="is_searching" class="search-result-loading">
+                        <img src="./js/utils/loading/images/loading.gif">
+                    </div>
+                    <div v-if="search_list && search_list.length>0 && !is_searching" class="search-result-item" v-for="item in search_list" @click="selectSearchItemAction(item)">
+                        <div class="search-result-item-title">{{item.realName}}</div>
+                        <div class="search-result-item-subtitle">{{item.policeAreaName}}</div>
+                    </div>
+                    <div v-if="search_list && search_list.length==0 && !is_searching" class="search-result-no">暂无结果</div>
+                </div>
+
+
+                <!--<div class="tongxunlu">-->
+                <!--<div><img src="./assets/tongxunlu-5.png" alt=""></div>-->
+                <!--<div class="p">常用联系人</div>-->
+                <!--</div>-->
+                <div class="quanju">
+                    <div><img src="./assets/zuzhijiagouguanli.png" alt=""></div>
+                    <div class="p">全局通讯录</div>
+                </div>
+                <el-tree lazy ref="tree" :data="tree" :props="props" :load="loadNode"
+                         node-key="jwptid" show-checkbox
+                         @check="handleCheckChange"
+                        ></el-tree>
+
+                <!--<el-button type="primary" @click="closetree()">确定</el-button>-->
+            </div>
+        </div>
+        <div v-if="showMask" class="mask" @click="hideSide()"></div>
+    </div>
+</div>
+
+<script src="./js/jquery-3.3.1.min.js"></script>
+<script src="./js/vue.min.js"></script>
+<script src="./js/element-ui-2.4.10/index.js"></script>
+<script src="./js/httpRequest.js?v=2019063003"></script>
+<script src="./js/utils/loading/loading.js"></script>
+<script src="js/loginCheck.js?v=2019063003"></script>
+<script src="./js/intoMeeting.js"></script>
+<script>
+    $(function () {
+        $(".login-out").click(function () {
+            window.location.href = 'login.html'
+        })
+    })
+</script>
+</body>
+
+</html>
